@@ -31,12 +31,52 @@ function App() {
 
   return (
     <div>
-      <header style={{ backgroundColor: "red", padding: "10px" }}>헤더</header>
-      <main style={{ backgroundColor: "#cdfa53", padding: "10px" }}>
-        메인을 넣을꺼야
+      <header></header>
+      <main style={{ display: "block", margin: "8px" }}>
         <div>
-          <h2>리스트를 작성!!</h2>
+          <div
+            style={{
+              boxSizing: "border-box",
+              border: "1px gray solid",
+
+              display: "flex",
+              justifyContent: "space-between",
+              alignContent: "center",
+              padding: "0 12px",
+              margin: "0 0 20px 0",
+
+              width: "1200px",
+              height: "50px",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "24px",
+              }}
+            >
+              My Todo List
+            </div>
+            <div
+              style={{
+                fontSize: "24px",
+              }}
+            >
+              react
+            </div>
+          </div>
           <form
+            style={{
+              boxSizing: "border-box",
+              border: "1px solid none",
+              borderRadius: "12px",
+              padding: "30px",
+              margin: "0 auto",
+
+              display: "flex",
+
+              backgroundColor: "#eeee",
+              gap: "450px",
+            }}
             onSubmit={function (event) {
               event.preventDefault();
 
@@ -50,29 +90,56 @@ function App() {
               setTodos([...todos, newTodo]);
             }}
           >
-            <input
-              type="text"
-              placeholder="제목을 작성해줘"
-              value={title}
-              onChange={function (event) {
-                setTitle(event.target.value);
+            <div style={{ alignitems: "cetner", display: "flex", gap: "20px" }}>
+              <input
+                style={{
+                  border: "none",
+                  borderradius: "12px",
+                  height: "40px",
+                  padding: "0 12px",
+                  width: "240px",
+                }}
+                type="text"
+                placeholder="제목을 작성해줘"
+                value={title}
+                onChange={function (event) {
+                  setTitle(event.target.value);
+                }}
+              ></input>
+              <input
+                style={{
+                  border: "none",
+                  borderradius: "12px",
+                  height: "40px",
+                  padding: "0 12px",
+                  width: "240px",
+                }}
+                type="text"
+                placeholder="내용을 작성해줘"
+                value={contents}
+                onChange={function (event) {
+                  setContents(event.target.value);
+                }}
+              ></input>
+            </div>
+            <button
+              style={{
+                backgroundColor: "teal",
+                borderRadius: "10px",
+                color: "white",
+                width: "140px",
+                height: "40px",
               }}
-            ></input>
-            <input
-              type="text"
-              placeholder="내용을 작성해줘"
-              value={contents}
-              onChange={function (event) {
-                setContents(event.target.value);
-              }}
-            ></input>
-            <button type="submit">제출</button>
+              type="submit"
+            >
+              제출
+            </button>
           </form>
         </div>
         <TodoList todos={todos} setTodos={setTodos} isDone={false} />
         <TodoList todos={todos} setTodos={setTodos} isDone={true} />
       </main>
-      <footer style={{ backgroundColor: "blue", padding: "10px" }}>푸터</footer>
+      <footer></footer>
     </div>
   );
 }
