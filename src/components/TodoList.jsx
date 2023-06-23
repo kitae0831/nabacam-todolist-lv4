@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Todolist({ todos, setTodos, isDone }) {
   return (
@@ -21,9 +22,14 @@ function Todolist({ todos, setTodos, isDone }) {
                 }}
                 key={todo.id}
               >
+                <Link to="../detailPage">상세페이지</Link>
                 {/* <p>{todo.id}</p> */}
-                <p>{todo.title}</p>
-                <p>{todo.contents}</p>
+                <p style={{ fontWeight: "bold", fontSize: "28px" }}>
+                  {todo.title}
+                </p>
+                <p style={{ fontWeight: "bold", fontSize: "16px" }}>
+                  {todo.contents}
+                </p>
                 {/* <p>{todo.isDone.toString()}</p> */}
                 <button
                   style={{
