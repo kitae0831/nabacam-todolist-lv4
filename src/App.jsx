@@ -1,32 +1,27 @@
 import { useState } from "react";
 import "./App.css";
 import uuid from "react-uuid";
+import TodoList from "./components/TodoList";
 
 function App() {
   const initState = [
     {
       id: uuid(),
-      title: "제목 1",
-      contents: "내용 1",
-      isDone: "false",
+      title: "제목1",
+      contents: "내용1",
+      isDone: false,
     },
     {
       id: uuid(),
-      title: "제목 2",
-      contents: "내용 2",
-      isDone: "false",
+      title: "제목2",
+      contents: "내용2",
+      isDone: true,
     },
     {
       id: uuid(),
-      title: "제목 3",
-      contents: "내용 3",
-      isDone: "false",
-    },
-    {
-      id: uuid(),
-      title: "제목 4",
-      contents: "내용 4",
-      isDone: "false",
+      title: "제목3",
+      contents: "내용3",
+      isDone: false,
     },
   ];
 
@@ -36,113 +31,49 @@ function App() {
 
   return (
     <div>
-      <header style={{ backgroundColor: "#5c7e", padding: "20px" }}>
-        헤더요!
-      </header>
-      <main style={{ backgroundColor: "#258", padding: "20px" }}>
+      <header style={{ backgroundColor: "red", padding: "10px" }}>헤더</header>
+      <main style={{ backgroundColor: "#cdfa53", padding: "10px" }}>
+        메인을 넣을꺼야
         <div>
-          <h3>메인</h3>
-          <div>
-            <form
-              onSubmit={function (event) {
-                event.preventDefault();
+          <h2>리스트를 작성!!</h2>
+          <form
+            onSubmit={function (event) {
+              event.preventDefault();
 
-                const newTodo = {
-                  id: uuid(),
-                  title,
-                  contents,
-                  isDone: false,
-                };
+              const newTodo = {
+                id: uuid(),
+                title,
+                contents,
+                isDone: false,
+              };
 
-                setTodos(...todos, newTodo);
+              setTodos([...todos, newTodo]);
+            }}
+          >
+            <input
+              type="text"
+              placeholder="제목을 작성해줘"
+              value={title}
+              onChange={function (event) {
+                setTitle(event.target.value);
               }}
-            >
-              <input
-                type="text"
-                placeholder="제목을 입력~"
-                value={title}
-                onChange={function (event) {
-                  setTitle(event.target.value);
-                }}
-              />
-              <input
-                type="text"
-                placeholder="내용을 입력~"
-                value={contents}
-                onChange={function (event) {
-                  setContents(event.target.value);
-                }}
-              />
-              <button type="submit">추가!</button>
-            </form>
-          </div>
+            ></input>
+            <input
+              type="text"
+              placeholder="내용을 작성해줘"
+              value={contents}
+              onChange={function (event) {
+                setContents(event.target.value);
+              }}
+            ></input>
+            <button type="submit">제출</button>
+          </form>
         </div>
-        <div>
-          <div>
-            <h2>Todolist!!!!</h2>
-            {todos.map(function (todo) {
-              return (
-                <div>
-                  <div
-                    style={{ border: "4px solid blue", padding: "10px" }}
-                    key={todo.id}
-                  >
-                    <p>{todo.id}</p>
-                    <p>{todo.title}</p>
-                    <p>{todo.contents}</p>
-                    <p>{todo.isDone.toString()}</p>
-
-                    <button
-                      onclick={function () {
-                        const newTodos = todos.filter(function (a) {
-                          return a.id !== todo.id;
-                        });
-                        setTodos(newTodos);
-                      }}
-                    >
-                      삭제
-                    </button>
-                    <button>완료</button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div>
-            <h2>Donelist!!!!</h2>
-            {todos.map(function (todo) {
-              return (
-                <div>
-                  <div
-                    style={{ border: "4px solid blue", padding: "10px" }}
-                    key={todo.id}
-                  >
-                    <p>{todo.id}</p>
-                    <p>{todo.title}</p>
-                    <p>{todo.contents}</p>
-                    <p>{todo.isDone}</p>
-
-                    <button
-                      onclick={function () {
-                        const newTodos = todos.filter(function (a) {
-                          return a.id !== todo.id;
-                        });
-                        setTodos(newTodos);
-                      }}
-                    >
-                      삭제
-                    </button>
-                    <button>완료</button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <TodoList todos={todos} setTodos={setTodos} isDone={false} />
+        <TodoList todos={todos} setTodos={setTodos} isDone={true} />
       </main>
-      <footer style={{ backgroundColor: "#567", padding: "20px" }}>푸터</footer>
+      <footer style={{ backgroundColor: "blue", padding: "10px" }}>푸터</footer>
     </div>
   );
 }
-
 export default App;
