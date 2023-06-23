@@ -88,6 +88,8 @@ function App() {
               };
 
               setTodos([...todos, newTodo]);
+              setTitle("");
+              setContents("");
             }}
           >
             <div style={{ alignitems: "cetner", display: "flex", gap: "20px" }}>
