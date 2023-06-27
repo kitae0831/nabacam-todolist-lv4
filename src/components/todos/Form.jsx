@@ -1,5 +1,5 @@
 import React from "react";
-import uuid from "react-uuid";
+import shortid from "shortid";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -34,7 +34,7 @@ function From() {
             dispatch({
               type: "ADD_TODO",
               payload: {
-                id: uuid(),
+                id: shortid.generate(),
                 title: title,
                 contents: contents,
                 isDone: false,

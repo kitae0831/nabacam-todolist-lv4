@@ -1,20 +1,20 @@
-import uuid from "react-uuid";
+import shortid from "shortid";
 
 const initialState = [
   {
-    id: uuid(),
+    id: shortid.generate(),
     title: "리액트",
     body: "리액트 공부하기",
     isDone: false,
   },
   {
-    id: uuid(),
+    id: shortid.generate(),
     title: "리액트1",
     body: "리액트 공부하기",
     isDone: false,
   },
   {
-    id: uuid(),
+    id: shortid.generate(),
     title: "리액트2",
     body: "리액트 공부하기",
     isDone: true,

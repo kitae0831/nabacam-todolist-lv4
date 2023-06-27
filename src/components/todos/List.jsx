@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function List() {
   const todos = useSelector((state) => {
@@ -27,6 +28,7 @@ function List() {
                 }}
                 key={todo.id}
               >
+                <Link to={`/${todo.id}`}>상세페이지</Link>
                 {/* <p>{todo.id}</p> */}
                 <p style={{ fontWeight: "bold", fontSize: "28px" }}>
                   {todo.title}
