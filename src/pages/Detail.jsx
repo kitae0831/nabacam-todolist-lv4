@@ -1,15 +1,27 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function Detail() {
+const Detail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const todos = useSelector((state) => state.todos);
 
-  console.log("id", id);
-  console.log("todos", todos);
+  const todo = todos.filter((todo) => todo.id === id)[0];
 
-  return <div>Detail</div>;
-}
+  return (
+    <div>
+      {todo.id}
+      <br />
+      {todo.title}
+      <br />
+      {todo.contents}
+      <br />
+      {todo.isDone.toString()}
+      <br />
+      <button onClick={() => navigate("/")}>이전 화면으로</button>
+    </div>
+  );
+};
 
 export default Detail;
