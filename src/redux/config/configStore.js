@@ -1,13 +1,8 @@
-import { createStore } from "redux";
-import { combineReducers } from "redux";
-import todos from "../modules/todos";
+import { configureStore } from "@reduxjs/toolkit";
+import todos from "../modules/todosSlice";
 
-// store 만들어 내기
-// 중앙데이터리소
-
-const rootReducer = combineReducers({
-  todos: todos,
+const store = configureStore({
+  reducer: { todos },
 });
-const store = createStore(rootReducer);
 
 export default store;
