@@ -26,6 +26,7 @@ function DetailTodolist() {
     onSuccess: () => {
       queryClient.invalidateQueries("todos");
 
+      // 삭제 후 위치 이동을 시켜주지 않으면 id값이 사라졌는데 페이지 그대로 존재하며 오류 발생
       window.location.replace("/works");
     },
   });
