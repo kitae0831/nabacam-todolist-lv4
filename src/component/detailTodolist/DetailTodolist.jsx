@@ -1,5 +1,10 @@
 import React from "react";
-import { queryClient, useMutation, useQuery } from "react-query";
+import {
+  queryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import { delTodo, getTodos } from "../../api/todo";
 import { useNavigate, useParams } from "react-router-dom";
 import { styled } from "styled-components";
@@ -8,16 +13,20 @@ import Header from "../header/Header";
 function DetailTodolist() {
   const { isLoading, data } = useQuery(["todos"], getTodos);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const params = useParams();
 
   const filteredTodos = data.find((item) => {
-    return item.id === params.id;
+    return item.id == params.id;
   });
+  console.log(filteredTodos.id);
 
   // 삭제
   const mutation = useMutation(delTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("todos");
+
+      window.location.replace("/works");
     },
   });
 
