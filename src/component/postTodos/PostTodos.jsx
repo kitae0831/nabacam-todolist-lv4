@@ -9,8 +9,10 @@ function PostTodos() {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(addTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+    onSuccess: async () => {
+      await queryClient.invalidateQueries("todos");
+
+      window.location.replace("/works");
     },
   });
 
@@ -29,7 +31,6 @@ function PostTodos() {
     };
 
     mutation.mutate(newTodos);
-    window.location.replace("/works");
   };
 
   return (
