@@ -22,8 +22,10 @@ function FixTodos() {
   const [contents, setContents] = useInput(filteredTodos.contents);
 
   const mutation = useMutation(fixTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
+    onSuccess: async () => {
+      await queryClient.invalidateQueries("todos");
+
+      window.location.replace("/works");
     },
   });
 
@@ -40,8 +42,6 @@ function FixTodos() {
     // 데이터를 업데이트하거나 생성 삭제를 할 때 사용 useMutation, 서버 저장도 가능
     // 리엑트 쿼리 부분 강의 재수강
     mutation.mutate(newTodo);
-
-    window.location.replace("/works");
   };
 
   return (
