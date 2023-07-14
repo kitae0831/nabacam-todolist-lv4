@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { queryClient, useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { fixTodo } from "../../api/todo";
 import { getTodos } from "../../api/todo";
 import useInput from "../../hooks/useInput";
@@ -8,6 +8,8 @@ import { styled } from "styled-components";
 import Header from "../header/Header";
 
 function FixTodos() {
+  const queryClient = useQueryClient();
+
   const { data } = useQuery("todos", getTodos);
   const params = useParams();
 
